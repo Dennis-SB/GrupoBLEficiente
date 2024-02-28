@@ -1,17 +1,14 @@
-﻿using BackEnd.Areas.Identity.Data;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
+using BackEnd.Areas.Identity.Data;
 using BackEnd.Models;
 using BackEnd.Models.Authentication.SignUp;
-// using BackEnd.Service.Models;
-// using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-// using NETCore.MailKit.Core;
-// using BackEnd.Service.Services;
 using BackEnd.Models.Authentication.Login;
-using System.Security.Claims;
-using System.IdentityModel.Tokens.Jwt;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
+using BackEnd.Models.Service;
 
 namespace BackEnd.Controllers
 {
@@ -21,15 +18,15 @@ namespace BackEnd.Controllers
     {
         private readonly UserManager<GrupoBLUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
-        // private readonly Service.Services.IEmailService _emailService;
+        private readonly DAL.interfaces.IEmailService _emailService;
         private readonly IConfiguration _configuration;
 
         public AuthenticationController(UserManager<GrupoBLUser> userManager, RoleManager<IdentityRole> roleManager,
-            /* Service.Services.IEmailService emailService,*/ IConfiguration configuration)
+            DAL.interfaces.IEmailService emailService, IConfiguration configuration)
         {
             _userManager = userManager;
             _roleManager = roleManager;
-            //_emailService = emailService;
+            _emailService = emailService;
             _configuration = configuration;
         }
 
@@ -122,7 +119,7 @@ namespace BackEnd.Controllers
             #endregion
         }
 
-        /* [HttpGet]
+        [HttpGet]
         [Route("TestEmail")]
         public IActionResult TestEmail()
         {
@@ -131,7 +128,7 @@ namespace BackEnd.Controllers
             _emailService.SendEmail(message);
             return StatusCode(StatusCodes.Status200OK,
                 new Response { Status = "Success", Message = "Email Sent Successfully!" });
-        } */
+        }
 
         [HttpGet("ConfirmEmail")]
         public async Task<IActionResult> ConfirmEmail(string token, string email)

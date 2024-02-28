@@ -1,8 +1,14 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
+using System.Text;
 using BackEnd.Data;
 using BackEnd.Areas.Identity.Data;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+using BackEnd.Models.Service;
+using BackEnd.DAL.interfaces;
+using BackEnd.DAL.Implementations;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
@@ -38,6 +44,12 @@ builder.Services.AddAuthentication(options =>
 });
 #endregion
 
+# region Email Configuration
+var emailconfig = configuration.GetSection("EmailConfiguration").Get<EmailConfiguration>();
+builder.Services.AddSingleton(emailconfig);
+builder.Services.AddScoped<IEmailService, EmailServiceImpl>();
+#endregion
+
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -56,9 +68,6 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseAuthentication();;
-
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();
