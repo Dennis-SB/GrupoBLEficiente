@@ -1,4 +1,5 @@
 ﻿using BackEnd.Areas.Identity.Data;
+using BackEnd.Models;
 using Entities.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -9,6 +10,12 @@ namespace BackEnd.Data;
 
 public class GrupoBLContext : IdentityDbContext<GrupoBLUser>
 {
+    public GrupoBLContext()
+    {
+        var optionBuilder = new DbContextOptionsBuilder<GrupoBLContext>();
+        optionBuilder.UseSqlServer(Util.ConnectionString);
+    }
+
     public GrupoBLContext(DbContextOptions<GrupoBLContext> options)
         : base(options)
     {
@@ -17,6 +24,12 @@ public class GrupoBLContext : IdentityDbContext<GrupoBLUser>
     public virtual DbSet<Employee> Employees { get; set; } = null!;
     public virtual DbSet<JobTitle> JobTitles { get; set; } = null!;
     public virtual DbSet<NationalIdType> NationalIdTypes { get; set; } = null!;
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseSqlServer(Util.ConnectionString);
+        base.OnConfiguring(optionsBuilder);
+    }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {

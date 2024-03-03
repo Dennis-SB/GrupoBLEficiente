@@ -9,6 +9,7 @@ using BackEnd.Areas.Identity.Data;
 using BackEnd.Models.Service;
 using BackEnd.DAL.interfaces;
 using BackEnd.DAL.Implementations;
+using BackEnd.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
@@ -18,6 +19,9 @@ var connectionString = configuration.GetConnectionString("GrupoBLContextConnecti
 
 builder.Services.AddDbContext<GrupoBLContext>(options =>
     options.UseSqlServer(connectionString));
+
+string connString = builder.Configuration.GetConnectionString("GrupoBLContextConnection");
+Util.ConnectionString = connString;
 #endregion
 
 #region Identity
