@@ -10,34 +10,34 @@ namespace BackEnd.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class JobTitleController : ControllerBase
+    public class NationalIdTypeController : ControllerBase
     {
-        private IJobTitleDAL entityDAL;
+        private INationalIdTypeDAL entityDAL;
 
-        private JobTitleModel Convert(JobTitle entity)
+        private NationalIdTypeModel Convert(NationalIdType entity)
         {
-            return new JobTitleModel
+            return new NationalIdTypeModel
             {
-                IdJobTitle = entity.IdJobTitle,
+                IdType = entity.IdType,
                 Name = entity.Name,
                 Description = entity.Description
             };
         }
 
-        private JobTitle Convert(JobTitleModel entity)
+        private NationalIdType Convert(NationalIdTypeModel entity)
         {
-            return new JobTitle
+            return new NationalIdType
             {
-                IdJobTitle = entity.IdJobTitle,
+                IdType = entity.IdType,
                 Name = entity.Name,
                 Description = entity.Description
             };
         }
 
         #region Builders
-        public JobTitleController()
+        public NationalIdTypeController()
         {
-            entityDAL = new JobTitleDALImpl();
+            entityDAL = new NationalIdTypeDALImpl();
         }
         #endregion
 
@@ -46,8 +46,8 @@ namespace BackEnd.Controllers
         [HttpGet]
         public JsonResult Get()
         {
-            IEnumerable<JobTitle> entities = entityDAL.GetAll();
-            List<JobTitleModel> models = new List<JobTitleModel>();
+            IEnumerable<NationalIdType> entities = entityDAL.GetAll();
+            List<NationalIdTypeModel> models = new List<NationalIdTypeModel>();
             foreach (var entity in entities)
             {
                 models.Add(Convert(entity));
@@ -59,7 +59,7 @@ namespace BackEnd.Controllers
         [HttpGet("{id}")]
         public JsonResult Get(int id)
         {
-            JobTitle entity = entityDAL.Get(id);
+            NationalIdType entity = entityDAL.Get(id);
             return new JsonResult(Convert(entity));
         }
         #endregion
@@ -67,7 +67,7 @@ namespace BackEnd.Controllers
         #region Add
         // POST api/<Controller>
         [HttpPost]
-        public JsonResult Post([FromBody] JobTitleModel entity)
+        public JsonResult Post([FromBody] NationalIdTypeModel entity)
         {
             entityDAL.Add(Convert(entity));
             return new JsonResult(entity);
@@ -77,7 +77,7 @@ namespace BackEnd.Controllers
         #region Update
         // PUT api/<Controller>/5
         [HttpPut]
-        public JsonResult Put([FromBody] JobTitleModel entity)
+        public JsonResult Put([FromBody] NationalIdTypeModel entity)
         {
             entityDAL.Update(Convert(entity));
             return new JsonResult(entity);
@@ -89,9 +89,9 @@ namespace BackEnd.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            JobTitle entity = new JobTitle
+            NationalIdType entity = new NationalIdType
             {
-                IdJobTitle = id
+                IdType = id
             };
             entityDAL.Remove(entity);
         }

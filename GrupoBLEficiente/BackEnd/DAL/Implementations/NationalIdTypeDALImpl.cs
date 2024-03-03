@@ -5,15 +5,15 @@ using System.Linq.Expressions;
 
 namespace BackEnd.DAL.Implementations
 {
-    public class JobTitleDALImpl : IJobTitleDAL
+    public class NationalIdTypeDALImpl : INationalIdTypeDAL
     {
-        private WorkUnit<JobTitle> workunit;
+        private WorkUnit<NationalIdType> workunit;
 
-        public bool Add(JobTitle entity)
+        public bool Add(NationalIdType entity)
         {
             try
             {
-                using (workunit = new WorkUnit<JobTitle>(new GrupoBLContext()))
+                using (workunit = new WorkUnit<NationalIdType>(new GrupoBLContext()))
                 {
                     workunit.genericDAL.Add(entity);
                     workunit.Complete();
@@ -26,41 +26,41 @@ namespace BackEnd.DAL.Implementations
             }
         }
 
-        public void AddRange(IEnumerable<JobTitle> entities)
+        public void AddRange(IEnumerable<NationalIdType> entities)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<JobTitle> Find(Expression<Func<JobTitle, bool>> predicate)
+        public IEnumerable<NationalIdType> Find(Expression<Func<NationalIdType, bool>> predicate)
         {
             throw new NotImplementedException();
         }
 
-        public JobTitle Get(int id)
+        public NationalIdType Get(int id)
         {
-            JobTitle entity = null;
-            using (workunit = new WorkUnit<JobTitle>(new GrupoBLContext()))
+            NationalIdType entity = null;
+            using (workunit = new WorkUnit<NationalIdType>(new GrupoBLContext()))
             {
                 entity = workunit.genericDAL.Get(id);
             }
             return entity;
         }
 
-        public IEnumerable<JobTitle> GetAll()
+        public IEnumerable<NationalIdType> GetAll()
         {
-            IEnumerable<JobTitle> entities = null;
-            using (workunit = new WorkUnit<JobTitle>(new GrupoBLContext()))
+            IEnumerable<NationalIdType> entities = null;
+            using (workunit = new WorkUnit<NationalIdType>(new GrupoBLContext()))
             {
                 entities = workunit.genericDAL.GetAll();
             }
             return entities;
         }
 
-        public bool Remove(JobTitle entity)
+        public bool Remove(NationalIdType entity)
         {
             try
             {
-                using (workunit = new WorkUnit<JobTitle>(new GrupoBLContext()))
+                using (workunit = new WorkUnit<NationalIdType>(new GrupoBLContext()))
                 {
                     workunit.genericDAL.Remove(entity);
                     workunit.Complete();
@@ -73,21 +73,21 @@ namespace BackEnd.DAL.Implementations
             }
         }
 
-        public void RemoveRange(IEnumerable<JobTitle> entities)
+        public void RemoveRange(IEnumerable<NationalIdType> entities)
         {
             throw new NotImplementedException();
         }
 
-        public JobTitle SingleOrDefault(Expression<Func<JobTitle, bool>> predicate)
+        public NationalIdType SingleOrDefault(Expression<Func<NationalIdType, bool>> predicate)
         {
             throw new NotImplementedException();
         }
 
-        public bool Update(JobTitle entity)
+        public bool Update(NationalIdType entity)
         {
             try
             {
-                using (workunit = new WorkUnit<JobTitle>(new GrupoBLContext()))
+                using (workunit = new WorkUnit<NationalIdType>(new GrupoBLContext()))
                 {
                     workunit.genericDAL.Update(entity);
                     workunit.Complete();
