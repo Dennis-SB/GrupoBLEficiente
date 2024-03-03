@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -119,6 +120,7 @@ namespace BackEnd.Controllers
             #endregion
         }
 
+        [Authorize(Roles = "Administrador")]
         [HttpGet]
         [Route("TestEmail")]
         public IActionResult TestEmail()
@@ -195,11 +197,7 @@ namespace BackEnd.Controllers
             if (user != null)
             {
                 var userRoles = await _userManager.GetRolesAsync(user);
-
-
                 model.Roles = userRoles.ToList();
-
-
                 return Ok(model);
             }
             return Unauthorized();
