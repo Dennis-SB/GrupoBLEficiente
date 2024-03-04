@@ -1,0 +1,47 @@
+﻿@model IEnumerable<FrontEnd.Models.JobTitleViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdJobTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdJobTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.IdJobTitle }) |
+                    @Html.ActionLink("Detalles", "Details", new { id = item.IdJobTitle }) |
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.IdJobTitle })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
