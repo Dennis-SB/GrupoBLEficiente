@@ -1,4 +1,4 @@
-﻿@model IEnumerable<FrontEnd.Models.JobTitleViewModel>
+﻿@model IEnumerable<FrontEnd.Models.NationalIdTypeViewModel>
 
 @{
     ViewData["Title"] = "Index";
@@ -13,7 +13,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.IdJobTitle)
+                @Html.DisplayNameFor(model => model.IdType)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Name)
@@ -28,7 +28,7 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.IdJobTitle)
+                @Html.DisplayFor(modelItem => item.IdType)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
@@ -37,9 +37,9 @@
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
-                    @Html.ActionLink("Editar", "Edit", new { id = item.IdJobTitle }) |
-                    @Html.ActionLink("Detalles", "Details", new { id = item.IdJobTitle }) |
-                    @Html.ActionLink("Eliminar", "Delete", new { id = item.IdJobTitle })
+                    @Html.ActionLink("Editar", "Edit", new { id=item.IdType }) |
+                    @Html.ActionLink("Detalles", "Details", new { id=item.IdType }) |
+                    @Html.ActionLink("Eliminar", "Delete", new { id=item.IdType })
             </td>
         </tr>
 }
