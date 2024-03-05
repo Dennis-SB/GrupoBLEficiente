@@ -1,0 +1,40 @@
+﻿@model FrontEnd.Models.NationalIdTypeViewModel
+
+@{
+    ViewData["Title"] = "Detalles";
+}
+
+<div>
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Detalles del Tipo de Cédula</h3>
+        </div>
+        <div ="card-body">
+            <hr />
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.IdType)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.IdType)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Name)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Description)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Description)
+                </dd>
+            </dl>
+        </div>
+        <div>
+            <a asp-action="Edit" asp-route-id="@Model.IdType" class="btn btn-info">Editar</a>
+            <a asp-action="Index" class="btn btn-info">Volver a la Lista</a>
+        </div>
+    </div>
+</div>
