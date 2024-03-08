@@ -10,12 +10,12 @@
             Client.BaseAddress = new Uri("http://localhost:5225");
         }
 
-        /*public ServiceRepository(string token)
+        public ServiceRepository(string token)
         {
             Client = new HttpClient();
-            Client.BaseAddress = new Uri("http://localhost:7075");
+            Client.BaseAddress = new Uri("http://localhost:5225");
             Client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
-        }*/
+        }
 
         public HttpResponseMessage GetResponse(string url)
         {

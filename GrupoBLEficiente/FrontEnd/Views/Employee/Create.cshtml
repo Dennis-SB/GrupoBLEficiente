@@ -7,7 +7,7 @@
 <h1>Crear</h1>
 
 <hr />
-<div class="row">
+<div class="row" style="margin-left: 1%;">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -23,7 +23,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="IdType" class="control-label"></label>
-                @Html.DropDownListFor(model => model.IdType, new SelectList(Model.NationalIdTypes, "IdType", "Name"), "Seleccione una Opción")
+                <select asp-for="IdType" class="form-control" asp-items="@(new SelectList(Model.NationalIdTypes, "IdType", "Name"))"></select>
                 <span asp-validation-for="IdType" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -58,7 +58,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="IdJobTitle" class="control-label"></label>
-                @Html.DropDownListFor(model => model.IdJobTitle, new SelectList(Model.JobTitles, "IdJobTitle", "Name"), "Seleccione una Opción")
+                <select asp-for="IdType" class="form-control" asp-items="@(new SelectList(Model.JobTitles, "IdJobTitle", "Name"))"></select>
                 <span asp-validation-for="IdJobTitle" class="text-danger"></span>
             </div>
             <div class="form-group">

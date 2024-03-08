@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace BackEnd.Models.Authentication.SignUp
+namespace FrontEnd.Models
 {
-    public class RegisterUser
+    public class RegisterViewModel
     {
         [Display(Name = "Nombre de Usuario")]
         [Required(ErrorMessage = "El Nombre de Usuario es requerido")]
